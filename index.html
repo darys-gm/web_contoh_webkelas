@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas IX-Discovery - Website Kita!</title>
+    
+    <!-- Google Fonts: Fredoka One & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==================== CSS VARIABLES (PALET WARNA) ==================== */
+        :root {
+            --primary-blue: #4FC3F7;
+            --primary-purple: #BA68C8;
+            --accent-yellow: #FFD54F;
+            --accent-green: #81C784;
+            --dark-text: #333;
+            --light-text: #f4f4f4;
+            --bg-color: #f9f9f9;
+        }
+
+        /* ==================== GLOBAL STYLES ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka One', cursive;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-purple);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* ==================== NAVIGATION BAR ==================== */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.8rem;
+            color: var(--primary-purple);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .logo:hover {
+            color: var(--primary-blue);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-yellow);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        nav ul li a.active {
+            color: var(--primary-purple);
+        }
+
+        /* ==================== HAMBURGER MENU (UNTUK MOBILE) ==================== */
+        .hamburger {
+            display: none; /* Sembunyikan di desktop */
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--dark-text);
+        }
+
+        /* ==================== HERO SECTION (BERANDA) ==================== */
+        #home {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            height: 100vh;
+            color: var(--light-text);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #home h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        #home p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-yellow);
+            color: var(--dark-text);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-3px);
+        }
+
+        /* ==================== STRUKTUR ORGANISASI ==================== */
+        #struktur {
+            background-color: #fff;
+        }
+
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .org-card {
+            background: #fff;
+            border: 3px solid var(--primary-blue);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .org-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: var(--primary-purple);
+        }
+
+        .org-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-yellow);
+            margin-bottom: 15px;
+        }
+
+        .org-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-purple);
+            margin-bottom: 5px;
+        }
+
+        .org-card .jabatan {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-style: italic;
+        }
+
+        /* ==================== MATA PELAJARAN (MAPEL) ==================== */
+        #mapel {
+             background-color: #f0f4ff;
+        }
+
+        .mapel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .mapel-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+            border-top: 5px solid var(--accent-green);
+        }
+
+        .mapel-card:hover {
+            transform: scale(1.05);
+        }
+
+        .mapel-card .mapel-icon {
+            font-size: 3rem;
+            color: var(--primary-purple);
+            margin-bottom: 15px;
+        }
+
+        .mapel-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .mapel-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* ==================== GALERI (MOMEN BERSAMA) ==================== */
+        #galeri {
+            background-color: #fff;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        footer p {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        /* ==================== ANIMASI REVEAL SAAT SCROLL ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ==================== RESPONSIVE DESIGN (UNTUK MOBILE) ==================== */
+        @media (max-width: 768px) {
+            /* --- Navigasi --- */
+            .hamburger {
+                display: block; /* Tampilkan hamburger menu */
+            }
+
+            nav ul {
+                position: fixed;
+                left: -100%; /* Mulai dari luar layar */
+                top: 70px; /* Sesuaikan dengan tinggi header */
+                flex-direction: column;
+                background-color: var(--primary-purple);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+
+            nav ul.nav-active {
+                left: 0; /* Muncul ke dalam layar */
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            nav ul li a {
+                color: var(--light-text);
+                font-size: 1.2rem;
+            }
+            
+            nav ul li a::after {
+                 background-color: var(--accent-yellow);
+            }
+
+            /* --- Umum --- */
+            h2 { font-size: 2rem; }
+            section { padding: 60px 0; } /* Kurangi padding section */
+
+            /* --- Hero --- */
+            #home { height: 90vh; } /* Sesuaikan tinggi */
+            #home h1 { font-size: 2.5rem; }
+            #home p { font-size: 1.1rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { padding: 0 15px; }
+            h2 { font-size: 1.8rem; }
+            .org-card, .mapel-card { padding: 20px; }
+            .gallery-item img { height: 200px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER & NAVIGATION ==================== -->
+    <header>
+        <nav>
+            <div class="container">
+                <a href="#home" class="logo">IX-Darys</a>
+                <!-- Hamburger Menu -->
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <ul>
+                    <li><a href="#home" class="nav-link active">Beranda</a></li>
+                    <li><a href="#struktur" class="nav-link">Struktur</a></li>
+                    <li><a href="#mapel" class="nav-link">Mapel</a></li>
+                    <li><a href="#galeri" class="nav-link">Galeri</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ==================== BERANDA (HERO) ==================== -->
+        <section id="home">
+            <h1>Contoh Website</h1>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <a href="#galeri" class="cta-button">Lihat Kenangan Kita</a>
+        </section>
+
+        <!-- ==================== STRUKTUR ORGANISASI ==================== -->
+        <section id="struktur">
+            <div class="container">
+                <h2 class="reveal">Struktur Organisasi</h2>
+                <div class="org-grid">
+                    <div class="org-card reveal">
+                        <img src="https://i.pravatar.cc/150?img=11" alt="Ketua Kelas">
+                        <h3>Darys</h3>
+                        <p class="jabatan">Jabatan Kelas</p>
+                    </div>
+                    <div class="org-card reveal">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Wakil Ketua">
+                        <h3>Darys</h3>
+                        <p class="jabatan">Jabatan Kelas</p>
+                    </div>
+                    <div class="org-card reveal">
+                        <img src="https://i.pravatar.cc/150?img=13" alt="Sekretaris">
+                        <h3>Darys</h3>
+                        <p class="jabatan">Jabatan Kelas</p>
+                    </div>
+                    <div class="org-card reveal">
+                        <img src="https://i.pravatar.cc/150?img=14" alt="Bendahara">
+                        <h3>Darys</h3>
+                        <p class="jabatan">Jabatan Kelas</p>
+                    </div>
+                    <div class="org-card reveal">
+                        <img src="https://i.pravatar.cc/150?img=15" alt="Kapsek Akademik">
+                        <h3>Darys</h3>
+                        <p class="jabatan">Jabatan Kelas</p>
+                    </div>
+                    <div class="org-card reveal">
+                        <img src="https://i.pravatar.cc/150?img=16" alt="Kapsek Olahraga">
+                        <h3>Darys</h3>
+                        <p class="jabatan">Jabatan Kelas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== MATA PELAJARAN (MAPEL) ==================== -->
+        <section id="mapel">
+            <div class="container">
+                <h2 class="reveal">Mata Pelajaran</h2>
+                <div class="mapel-grid">
+                    <div class="mapel-card reveal">
+                        <div class="mapel-icon"><i class="fas fa-calculator"></i></div>
+                        <h3>Mapel</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                    <div class="mapel-card reveal">
+                        <div class="mapel-icon"><i class="fas fa-flask"></i></div>
+                        <h3>Mapel</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                    <div class="mapel-card reveal">
+                        <div class="mapel-icon"><i class="fas fa-book-open"></i></div>
+                        <h3>Mapel</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                    <div class="mapel-card reveal">
+                        <div class="mapel-icon"><i class="fas fa-globe"></i></div>
+                        <h3>Mapel</h3>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== GALERI (MOMEN BERSAMA) ==================== -->
+        <section id="galeri">
+            <div class="container">
+                <h2 class="reveal">Momen Kebersamaan</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item reveal"><img src="https://picsum.photos/seed/discovery1/400/300.jpg" alt="Momen 1"></div>
+                    <div class="gallery-item reveal"><img src="https://picsum.photos/seed/discovery2/400/300.jpg" alt="Momen 2"></div>
+                    <div class="gallery-item reveal"><img src="https://picsum.photos/seed/discovery3/400/300.jpg" alt="Momen 3"></div>
+                    <div class="gallery-item reveal"><img src="https://picsum.photos/seed/discovery4/400/300.jpg" alt="Momen 4"></div>
+                    <div class="gallery-item reveal"><img src="https://picsum.photos/seed/discovery5/400/300.jpg" alt="Momen 5"></div>
+                    <div class="gallery-item reveal"><img src="https://picsum.photos/seed/discovery6/400/300.jpg" alt="Momen 6"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; Desain,Link Social,Dokumentasi dan Tema bisa di custom. </p>
+    </footer>
+
+    <script>
+        // ==================== JAVASCRIPT ====================
+
+        // 1. Fungsi untuk Hamburger Menu
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector("nav ul");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active"); // Bisa dipakai untuk animasi X
+            navMenu.classList.toggle("nav-active");
+        });
+
+        // Tutup menu saat salah satu link diklik
+        navLinks.forEach(link => link.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("nav-active");
+        }));
+
+
+        // 2. Animasi Reveal Saat Scroll
+        const reveals = document.querySelectorAll('.reveal');
+
+        const scrollReveal = () => {
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', scrollReveal);
+        scrollReveal(); // Jalankan sekali saat halaman dimuat
+
+
+        // 3. Highlight Navigasi Aktif Berdasarkan Section
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
